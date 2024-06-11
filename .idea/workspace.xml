@@ -10,26 +10,174 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/test/java/sampleTest/TestLevelOne.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2hh9A9qgAind9h1hRZ3ORTlX9cp" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="2" id="Remove" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Maven.sampleFrameworks [clean].executor": "Run",
+    "Maven.sampleFrameworks [compile].executor": "Run",
+    "Maven.sampleFrameworks [test].executor": "Run",
+    "Maven.sampleFrameworks [validate].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TestNG./home/keerthiga/Documents/Automation/sampleFrameworks/testng.xml.executor": "Run",
+    "TestNG.TestLevelOne.catalogTest.executor": "Run",
+    "TestNG.TestLevelOne.clusterTest.executor": "Run",
+    "TestNG.TestLevelOne.executor": "Run",
+    "TestNG.TestLevelTwo.executor": "Run",
+    "TestNG.TestLevelZero.catalogTest.executor": "Run",
+    "TestNG.TestLevelZero.executor": "Run",
+    "TestNG.TestLevelZero.workspaceTest.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "/home/keerthiga/Documents/Automation/sampleFrameworks/src/main/java/org/example/Main.java"
+    "last_opened_file_path": "/home/keerthiga/Documents/Automation/sampleFrameworks/src/main/java/Pages/Level2",
+    "onboarding.tips.debug.path": "/home/keerthiga/Documents/Automation/sampleFrameworks/src/main/java/org/example/Main.java",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/Pages/Level2" />
+      <recent name="$PROJECT_DIR$/src/main/java/Pages/Level1" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Base" />
+      <recent name="Pages.Level1" />
+    </key>
+  </component>
+  <component name="RunManager" selected="TestNG.TestLevelTwo">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestLevelOne" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="sampleFrameworks" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sampleTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sampleTest" />
+      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelOne" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestLevelOne.clusterTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="sampleFrameworks" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sampleTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sampleTest" />
+      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelOne" />
+      <option name="METHOD_NAME" value="clusterTest" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestLevelTwo" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="sampleFrameworks" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sampleTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sampleTest" />
+      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelTwo" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestLevelZero" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="sampleFrameworks" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sampleTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sampleTest" />
+      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelZero" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestLevelZero.catalogTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="sampleFrameworks" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sampleTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sampleTest" />
+      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelZero" />
+      <option name="METHOD_NAME" value="catalogTest" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.TestLevelTwo" />
+        <item itemvalue="TestNG.TestLevelOne" />
+        <item itemvalue="TestNG.TestLevelZero" />
+        <item itemvalue="TestNG.TestLevelZero.catalogTest" />
+        <item itemvalue="TestNG.TestLevelOne.clusterTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -41,11 +189,14 @@
     </task>
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/Pages/Main.java</url>
           <line>13</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
