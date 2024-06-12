@@ -12,7 +12,7 @@ public class Wrapper implements ITool {
     }
 
     @Override
-    public void loginToE6data(WebElement element1, WebElement element2, WebElement element3,String username, String password) {
+    public void loginToE6data(WebElement element1, WebElement element2, WebElement element3, String username, String password) {
 
         iTool.loginToE6data(element1, element2, element3, username, password);
     }
