@@ -1,0 +1,1646 @@
+Index: src/main/java/Base/BaseLevel3.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Base/BaseLevel3.java b/src/main/java/Base/BaseLevel3.java
+--- a/src/main/java/Base/BaseLevel3.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Base/BaseLevel3.java	(date 1718194899822)
+@@ -1,0 +1,42 @@
++package Base;
++
++import Pages.Core.Wrapper;
++import org.openqa.selenium.WebDriver;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.chrome.ChromeDriver;
++import org.openqa.selenium.support.ui.ExpectedConditions;
++import org.openqa.selenium.support.ui.WebDriverWait;
++
++import java.time.Duration;
++
++public class BaseLevel3 {
++
++    public static WebDriver driver = null;
++    public static Wrapper wrapper = null;
++
++    // Launch the browser and e6data url
++    public void launchE6data() {
++
++        driver = new ChromeDriver();
++        driver.manage().window().maximize();
++        wrapper = new Wrapper(driver);
++        driver.get("https://plt-beta.itachi.ai/login");
++
++    }
++
++    // Close the browser
++    public void closeDriver() {
++
++        driver.quit();
++
++    }
++
++    //Wait until the web element to be clickable
++    public void waitToClick(WebDriver driver, int time, WebElement element) {
++
++        new WebDriverWait(driver, Duration.ofSeconds(time)).until(ExpectedConditions.elementToBeClickable(element));
++
++    }
++
++
++}
+Index: src/main/java/Pages/Level3/Workspace.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level3/Workspace.java b/src/main/java/Pages/Level3/Workspace.java
+--- a/src/main/java/Pages/Level3/Workspace.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level3/Workspace.java	(date 1718195396123)
+@@ -1,0 +1,44 @@
++package Pages.Level3;
++
++import Base.BaseLevel3;
++import org.openqa.selenium.By;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.support.FindBy;
++import org.openqa.selenium.support.PageFactory;
++import org.openqa.selenium.support.ui.ExpectedConditions;
++import org.openqa.selenium.support.ui.WebDriverWait;
++
++import java.time.Duration;
++
++public class Workspace extends BaseLevel3 {
++
++
++    @FindBy(id = "settings")
++    WebElement btnSettings;
++
++    @FindBy(id = "workspace_name")
++    WebElement chkWorkspaceName;
++
++    public Workspace() {
++
++        PageFactory.initElements(driver, this);
++
++    }
++
++    public void selectWorkspace(String workspace) {
++
++        wrapper.selectWorkspace(workspace);
++    }
++
++    public void clickWorkspaceSettings() {
++
++        wrapper.clickWorkspaceSettings(btnSettings);
++    }
++
++    public void verifyWorkspaceNameDisableInSettings() {
++
++       wrapper.verifyWorkspaceNameDisableInSettings(chkWorkspaceName);
++
++    }
++
++}
+Index: src/main/java/Pages/Level1/Login.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level1/Login.java b/src/main/java/Pages/Level1/Login.java
+--- a/src/main/java/Pages/Level1/Login.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level1/Login.java	(date 1718190238436)
+@@ -1,0 +1,71 @@
++package Pages.Level1;
++
++import Base.BaseLevel1;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.support.FindBy;
++import org.openqa.selenium.support.PageFactory;
++import org.openqa.selenium.support.ui.ExpectedConditions;
++import org.openqa.selenium.support.ui.WebDriverWait;
++import java.time.Duration;
++
++
++public class Login extends BaseLevel1 {
++
++    @FindBy(xpath = "//*[@placeholder='Email']")
++    WebElement txtuserName;
++
++    @FindBy(xpath = "//*[@placeholder='Password']")
++    WebElement txtpassword;
++
++    @FindBy(xpath = "//button[text()='Sign in']")
++    WebElement btnSignIn;
++
++    public Login(){
++
++        PageFactory.initElements(driver,this);
++
++    }
++
++    public void loginToE6data(String username, String password){
++
++        enterUserName(username);
++        enterPassword(password);
++        clickSignIn();
++        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe("https://plt-beta.itachi.ai/workspace"));
++
++        if(driver.getCurrentUrl().equals("https://plt-beta.itachi.ai/workspace")){
++
++            System.out.println("Successfully logged in !!!");
++
++        }
++
++        else{
++
++            throw new RuntimeException("Unable to login...");
++
++        }
++
++    }
++
++    public void enterUserName(String userName){
++
++        waitToClick(driver, 10, txtuserName);
++        txtuserName.sendKeys(userName);
++
++    }
++
++    public void enterPassword(String password){
++
++        waitToClick(driver, 10, txtpassword);
++        txtpassword.sendKeys(password);
++
++    }
++
++    public void clickSignIn(){
++
++        waitToClick(driver, 10, btnSignIn);
++        btnSignIn.click();
++
++    }
++
++}
+Index: src/main/java/Pages/Core/Wrapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Pages.Level3;\n\npublic class Wrapper implements ITool {\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Core/Wrapper.java b/src/main/java/Pages/Core/Wrapper.java
+--- a/src/main/java/Pages/Core/Wrapper.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Core/Wrapper.java	(date 1718194899810)
+@@ -1,5 +1,64 @@
+-package Pages.Level3;
++package Pages.Core;
++
++import org.openqa.selenium.WebDriver;
++import org.openqa.selenium.WebElement;
+ 
+ public class Wrapper implements ITool {
+ 
++    private ITool iTool = null;
++
++    public Wrapper(WebDriver driver) {
++        iTool = new Selenium(driver);
++    }
++
++    @Override
++    public void loginToE6data(WebElement element1, WebElement element2, WebElement element3,String username, String password) {
++
++        iTool.loginToE6data(element1, element2, element3, username, password);
++    }
++
++    @Override
++    public void selectWorkspace(String workspace) {
++        iTool.selectWorkspace(workspace);
++    }
++
++    @Override
++    public void clickWorkspaceSettings(WebElement element) {
++        iTool.clickWorkspaceSettings(element);
++    }
++
++    @Override
++    public void verifyWorkspaceNameDisableInSettings(WebElement element) {
++        iTool.verifyWorkspaceNameDisableInSettings(element);
++    }
++
++    @Override
++    public void navigateToCatalogList(WebElement element1, WebElement element2) {
++        iTool.navigateToCatalogList(element1, element2);
++    }
++
++    @Override
++    public void clickCatalogSettings(WebElement element) {
++        iTool.clickCatalogSettings(element);
++    }
++
++    @Override
++    public void verifyCatalogNameDisableInSettings(WebElement element) {
++        iTool.verifyCatalogNameDisableInSettings(element);
++    }
++
++    @Override
++    public void navigateToClusterList(WebElement element1, WebElement element2) {
++        iTool.navigateToClusterList(element1, element2);
++    }
++
++    @Override
++    public void clickClusterSettings(WebElement element) {
++        iTool.clickClusterSettings(element);
++    }
++
++    @Override
++    public void verifyClusterNameDisableInSettings(WebElement element) {
++        iTool.verifyClusterNameDisableInSettings(element);
++    }
+ }
+Index: src/main/java/Pages/Level2/Catalog.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level2/Catalog.java b/src/main/java/Pages/Level2/Catalog.java
+--- a/src/main/java/Pages/Level2/Catalog.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level2/Catalog.java	(date 1718188252769)
+@@ -1,0 +1,63 @@
++package Pages.Level2;
++
++import Base.BaseLevel1;
++import Base.BaseLevel2;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.support.FindBy;
++import org.openqa.selenium.support.PageFactory;
++
++public class Catalog extends BaseLevel2 {
++
++    @FindBy(xpath = "//a[text()='plt-beta']")
++    WebElement lnkworkspace;
++
++    @FindBy(id = "Connectivity")
++    WebElement btnConnectivity;
++
++    @FindBy(id = "OpenBook")
++    WebElement btnCatalog;
++
++    @FindBy(id = "settings")
++    WebElement btnSettings;
++
++    @FindBy(id = "name")
++    WebElement chkCatalogName;
++
++    public Catalog() {
++
++        PageFactory.initElements(driver, this);
++
++    }
++
++    public void navigateToCatalogList(){
++
++        waitToClick(driver, 10, btnConnectivity);
++        btnConnectivity.click();
++
++        waitToClick(driver, 10, btnCatalog);
++        btnCatalog.click();
++
++    }
++
++    public void clickCatalogSettings(){
++
++        waitToClick(driver, 10, btnSettings);
++        btnSettings.click();
++
++    }
++
++    public void verifyCatalogNameDisableInSettings() {
++
++        if (chkCatalogName.isEnabled()) {
++
++            throw new RuntimeException("User is allowed to hide catalog name in catalog table");
++
++        } else {
++
++            System.out.println("catalog name is disabled in settings");
++
++        }
++
++    }
++
++}
+Index: src/test/java/sampleTest/TestLevelOne.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sampleTest;\n\nimport Pages.Level1.Workspace;\nimport org.testng.annotations.*;\nimport Base.BaseLevel1;\nimport Pages.Level1.Catalog;\nimport Pages.Level1.Cluster;\n\npublic class TestLevelOne extends BaseLevel1 {\n\n    Workspace workspace = null;\n    Catalog catalog = null;\n    Cluster cluster = null;\n\n    @BeforeMethod\n    public void setup() {\n\n        loginE6data();\n        workspace = new Workspace();\n        catalog = new Catalog();\n        cluster = new Cluster();\n\n    }\n\n    @AfterMethod\n    public void tearDown() {\n        closeDriver();\n    }\n\n    @Test(priority = 1)\n    public void workspaceTest() {\n\n        workspace.verifyWorkspaceSettings();\n\n    }\n\n    @Test(priority = 2)\n    public void catalogTest() {\n\n        catalog.verifyCatalogSettings();\n\n    }\n\n    @Test(priority = 3)\n    public void clusterTest() {\n\n        cluster.verifyClusterSettings();\n\n    }\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/sampleTest/TestLevelOne.java b/src/test/java/sampleTest/TestLevelOne.java
+--- a/src/test/java/sampleTest/TestLevelOne.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/test/java/sampleTest/TestLevelOne.java	(date 1718190238464)
+@@ -3,22 +3,24 @@
+ import Pages.Level1.Workspace;
+ import org.testng.annotations.*;
+ import Base.BaseLevel1;
+-import Pages.Level1.Catalog;
+-import Pages.Level1.Cluster;
++import Pages.Level1.*;
+ 
+ public class TestLevelOne extends BaseLevel1 {
+ 
+     Workspace workspace = null;
+     Catalog catalog = null;
+     Cluster cluster = null;
++    Login login = null;
++
+ 
+     @BeforeMethod
+     public void setup() {
+ 
+-        loginE6data();
++        launchE6data();
+         workspace = new Workspace();
+         catalog = new Catalog();
+         cluster = new Cluster();
++        login = new Login();
+ 
+     }
+ 
+@@ -28,23 +30,44 @@
+     }
+ 
+     @Test(priority = 1)
+-    public void workspaceTest() {
++    public void loginTest(){
+ 
+-        workspace.verifyWorkspaceSettings();
++        login.loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
+ 
+     }
+ 
+     @Test(priority = 2)
+-    public void catalogTest() {
++    public void workspaceTest() {
+ 
+-        catalog.verifyCatalogSettings();
++        login.loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
++
++        workspace.clickWorkspaceSettings();
++        workspace.verifyWorkspaceNameDisableInSettings();
+ 
+     }
+ 
+     @Test(priority = 3)
++    public void catalogTest() {
++
++        login.loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
++
++        workspace.selectWorkspace("plt-beta");
++
++        catalog.navigateToCatalogList();
++        catalog.clickCatalogSettings();
++        catalog.verifyCatalogNameDisableInSettings();
++    }
++
++    @Test(priority = 4)
+     public void clusterTest() {
+ 
+-        cluster.verifyClusterSettings();
++        login.loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
++
++        workspace.selectWorkspace("plt-beta");
++
++        cluster.navigateToClusterList();
++        cluster.clickClusterSettings();
++        cluster.verifyClusterNameDisableInSettings();
+ 
+     }
+ 
+Index: src/main/java/Pages/Level2/Workspace.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level2/Workspace.java b/src/main/java/Pages/Level2/Workspace.java
+--- a/src/main/java/Pages/Level2/Workspace.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level2/Workspace.java	(date 1718190238428)
+@@ -1,0 +1,55 @@
++package Pages.Level2;
++
++import Base.BaseLevel2;
++import org.openqa.selenium.By;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.support.FindBy;
++import org.openqa.selenium.support.PageFactory;
++import org.openqa.selenium.support.ui.ExpectedConditions;
++import org.openqa.selenium.support.ui.WebDriverWait;
++
++import java.time.Duration;
++
++public class Workspace extends BaseLevel2 {
++
++
++    @FindBy(id = "settings")
++    WebElement btnSettings;
++
++    @FindBy(id = "workspace_name")
++    WebElement chkWorkspaceName;
++
++    public Workspace() {
++
++        PageFactory.initElements(driver, this);
++
++    }
++
++    public void selectWorkspace(String workspace) {
++
++        new WebDriverWait(driver,Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='" + workspace + "']"))).click();
++
++    }
++
++    public void clickWorkspaceSettings(){
++
++        waitToClick(driver, 10, btnSettings);
++        btnSettings.click();
++
++    }
++
++    public void verifyWorkspaceNameDisableInSettings() {
++
++        if (chkWorkspaceName.isEnabled()) {
++
++            throw new RuntimeException("User is allowed to hide workspace name in workspace table");
++
++        } else {
++
++            System.out.println("Workspace name is disabled in settings");
++
++        }
++
++    }
++
++}
+Index: src/main/java/Pages/Level3/Cluster.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level3/Cluster.java b/src/main/java/Pages/Level3/Cluster.java
+--- a/src/main/java/Pages/Level3/Cluster.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level3/Cluster.java	(date 1718195396139)
+@@ -1,0 +1,48 @@
++package Pages.Level3;
++
++import Base.BaseLevel3;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.support.FindBy;
++import org.openqa.selenium.support.PageFactory;
++
++public class Cluster extends BaseLevel3 {
++
++    @FindBy(xpath = "//a[text()='plt-beta']")
++    WebElement lnkworkspace;
++
++    @FindBy(id = "Connectivity")
++    WebElement btnConnectivity;
++
++    @FindBy(xpath="//span[@class='name-label ' and text()='Clusters']")
++    WebElement btnCluster;
++
++    @FindBy(id = "settings")
++    WebElement btnSettings;
++
++    @FindBy(id = "cluster_name")
++    WebElement chkClusterName;
++
++    public Cluster(){
++
++        PageFactory.initElements(driver, this);
++
++    }
++
++    public void navigateToClusterList(){
++
++       wrapper.navigateToClusterList(btnConnectivity,btnCluster);
++
++    }
++
++    public void clickClusterSettings(){
++
++       wrapper.clickClusterSettings(btnSettings);
++    }
++
++    public void verifyClusterNameDisableInSettings() {
++
++        wrapper.verifyClusterNameDisableInSettings(chkClusterName);
++    }
++
++
++}
+Index: src/main/java/Pages/Level1/Workspace.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Pages.Level1;\n\nimport org.openqa.selenium.WebElement;\nimport org.openqa.selenium.support.FindBy;\nimport org.openqa.selenium.support.PageFactory;\nimport Base.BaseLevel1;\n\npublic class Workspace extends BaseLevel1 {\n\n\n    @FindBy(id = \"settings\")\n    WebElement btnSettings;\n\n    @FindBy(id=\"workspace_name\")\n    WebElement chkWorkspaceName;\n\n    public Workspace(){\n\n        PageFactory.initElements(driver, this);\n\n    }\n\n\n    public void verifyWorkspaceSettings()  {\n\n        waitToClick(driver, 10, btnSettings);\n        btnSettings.click();\n\n        if (chkWorkspaceName.isEnabled()){\n\n            throw new RuntimeException(\"User is allowed to hide workspace name in workspace table\");\n\n        }\n        else  {\n\n            System.out.println(\"Workspace name is disabled in settings\");\n\n        }\n\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level1/Workspace.java b/src/main/java/Pages/Level1/Workspace.java
+--- a/src/main/java/Pages/Level1/Workspace.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level1/Workspace.java	(date 1718190238416)
+@@ -1,9 +1,14 @@
+ package Pages.Level1;
+ 
++import org.openqa.selenium.By;
+ import org.openqa.selenium.WebElement;
+ import org.openqa.selenium.support.FindBy;
+ import org.openqa.selenium.support.PageFactory;
+ import Base.BaseLevel1;
++import org.openqa.selenium.support.ui.ExpectedConditions;
++import org.openqa.selenium.support.ui.WebDriverWait;
++
++import java.time.Duration;
+ 
+ public class Workspace extends BaseLevel1 {
+ 
+@@ -11,27 +16,35 @@
+     @FindBy(id = "settings")
+     WebElement btnSettings;
+ 
+-    @FindBy(id="workspace_name")
++    @FindBy(id = "workspace_name")
+     WebElement chkWorkspaceName;
+ 
+-    public Workspace(){
++    public Workspace() {
+ 
+         PageFactory.initElements(driver, this);
+ 
+     }
+ 
++    public void selectWorkspace(String workspace) {
++
++        new WebDriverWait(driver,Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='" + workspace + "']"))).click();
+ 
+-    public void verifyWorkspaceSettings()  {
++    }
++
++    public void clickWorkspaceSettings(){
+ 
+         waitToClick(driver, 10, btnSettings);
+         btnSettings.click();
+ 
+-        if (chkWorkspaceName.isEnabled()){
++    }
++
++    public void verifyWorkspaceNameDisableInSettings() {
++
++        if (chkWorkspaceName.isEnabled()) {
+ 
+             throw new RuntimeException("User is allowed to hide workspace name in workspace table");
+ 
+-        }
+-        else  {
++        } else {
+ 
+             System.out.println("Workspace name is disabled in settings");
+ 
+Index: src/main/java/Pages/Level1/Cluster.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Pages.Level1;\n\nimport Base.BaseLevel1;\nimport org.openqa.selenium.WebElement;\nimport org.openqa.selenium.support.FindBy;\nimport org.openqa.selenium.support.PageFactory;\n\npublic class Cluster extends BaseLevel1 {\n\n    @FindBy(xpath = \"//a[text()='plt-beta']\")\n    WebElement lnkworkspace;\n\n    @FindBy(id = \"Connectivity\")\n    WebElement btnConnectivity;\n\n    @FindBy(xpath=\"//span[@class='name-label ' and text()='Clusters']\")\n    WebElement btnCluster;\n\n    @FindBy(id = \"settings\")\n    WebElement btnSettings;\n\n    @FindBy(id = \"cluster_name\")\n    WebElement chkClusterName;\n\n    public Cluster(){\n\n        PageFactory.initElements(driver, this);\n\n    }\n\n\n    public void verifyClusterSettings() {\n\n        waitToClick(driver, 10, lnkworkspace);\n        lnkworkspace.click();\n\n        waitToClick(driver, 10, btnConnectivity);\n        btnConnectivity.click();\n\n        waitToClick(driver, 10, btnCluster);\n        btnCluster.click();\n\n        waitToClick(driver, 10, btnSettings);\n        btnSettings.click();\n\n        if (chkClusterName.isEnabled()){\n\n            throw new RuntimeException(\"User is allowed to hide cluster name in catalog table\");\n\n        } else  {\n\n            System.out.println(\"Cluster name is disabled in settings\");\n\n        }\n\n    }\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level1/Cluster.java b/src/main/java/Pages/Level1/Cluster.java
+--- a/src/main/java/Pages/Level1/Cluster.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level1/Cluster.java	(date 1718186802718)
+@@ -1,9 +1,14 @@
+ package Pages.Level1;
+ 
+ import Base.BaseLevel1;
++import org.openqa.selenium.WebDriver;
+ import org.openqa.selenium.WebElement;
+ import org.openqa.selenium.support.FindBy;
+ import org.openqa.selenium.support.PageFactory;
++import org.openqa.selenium.support.ui.ExpectedConditions;
++import org.openqa.selenium.support.ui.WebDriverWait;
++
++import java.time.Duration;
+ 
+ public class Cluster extends BaseLevel1 {
+ 
+@@ -28,11 +33,7 @@
+ 
+     }
+ 
+-
+-    public void verifyClusterSettings() {
+-
+-        waitToClick(driver, 10, lnkworkspace);
+-        lnkworkspace.click();
++    public void navigateToClusterList(){
+ 
+         waitToClick(driver, 10, btnConnectivity);
+         btnConnectivity.click();
+@@ -40,9 +41,17 @@
+         waitToClick(driver, 10, btnCluster);
+         btnCluster.click();
+ 
++    }
++
++    public void clickClusterSettings(){
++
+         waitToClick(driver, 10, btnSettings);
+         btnSettings.click();
+ 
++    }
++
++    public void verifyClusterNameDisableInSettings() {
++
+         if (chkClusterName.isEnabled()){
+ 
+             throw new RuntimeException("User is allowed to hide cluster name in catalog table");
+Index: src/main/java/Pages/Level2/Login.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level2/Login.java b/src/main/java/Pages/Level2/Login.java
+--- a/src/main/java/Pages/Level2/Login.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level2/Login.java	(date 1718190238468)
+@@ -1,0 +1,71 @@
++package Pages.Level2;
++
++import Base.BaseLevel2;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.support.FindBy;
++import org.openqa.selenium.support.PageFactory;
++import org.openqa.selenium.support.ui.ExpectedConditions;
++import org.openqa.selenium.support.ui.WebDriverWait;
++
++import java.time.Duration;
++
++public class Login extends BaseLevel2 {
++
++    @FindBy(xpath = "//*[@placeholder='Email']")
++    WebElement txtuserName;
++
++    @FindBy(xpath = "//*[@placeholder='Password']")
++    WebElement txtpassword;
++
++    @FindBy(xpath = "//button[text()='Sign in']")
++    WebElement btnSignIn;
++
++    public Login(){
++
++        PageFactory.initElements(driver,this);
++
++    }
++
++    public void loginToE6data(String username, String password){
++
++        enterUserName(username);
++        enterPassword(password);
++        clickSignIn();
++        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe("https://plt-beta.itachi.ai/workspace"));
++
++        if(driver.getCurrentUrl().equals("https://plt-beta.itachi.ai/workspace")){
++
++            System.out.println("Successfully logged in !!!");
++
++        }
++
++        else{
++
++            throw new RuntimeException("Unable to login...");
++
++        }
++
++    }
++
++    public void enterUserName(String userName){
++
++        waitToClick(driver, 10, txtuserName);
++        txtuserName.sendKeys(userName);
++
++    }
++
++    public void enterPassword(String password){
++
++        waitToClick(driver, 10, txtpassword);
++        txtpassword.sendKeys(password);
++
++    }
++
++    public void clickSignIn(){
++
++        waitToClick(driver, 10, btnSignIn);
++        btnSignIn.click();
++
++    }
++
++}
+Index: src/main/java/Pages/Level2/Modules.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Pages.Level2;\n\nimport org.openqa.selenium.support.PageFactory;\n\npublic class Modules extends Base.BaseLevel2 {\n\n    public static Workspace Workspace() {\n\n        return PageFactory.initElements(driver, Workspace.class);\n\n    }\n\n    public static Catalog Catalog() {\n\n        return PageFactory.initElements(driver, Catalog.class);\n\n    }\n\n    public static Cluster Cluster() {\n\n        return PageFactory.initElements(driver, Cluster.class);\n\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level2/Modules.java b/src/main/java/Pages/Level2/Modules.java
+--- a/src/main/java/Pages/Level2/Modules.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level2/Modules.java	(date 1718188252773)
+@@ -4,6 +4,12 @@
+ 
+ public class Modules extends Base.BaseLevel2 {
+ 
++    public static Login Login() {
++
++        return PageFactory.initElements(driver, Login.class);
++
++    }
++
+     public static Workspace Workspace() {
+ 
+         return PageFactory.initElements(driver, Workspace.class);
+Index: src/test/java/sampleTest/TestLevelTwo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sampleTest;\n\nimport Base.BaseLevel2;\nimport Pages.Level2.Modules;\nimport org.testng.annotations.*;\n\npublic class TestLevelTwo extends BaseLevel2 {\n\n    @BeforeMethod\n    public void setup() {\n\n        loginE6data();\n\n    }\n\n    @AfterMethod\n    public void tearDown() {\n        closeDriver();\n    }\n\n    @Test(priority = 1)\n    public void workspaceTest() {\n\n        Modules.Workspace().verifyWorkspaceSettings();\n\n    }\n\n    @Test(priority = 2)\n    public void catalogTest() {\n\n        Modules.Catalog().verifyCatalogSettings();\n\n    }\n\n    @Test(priority = 3)\n    public void clusterTest() {\n\n        Modules.Cluster().verifyClusterSettings();\n\n    }\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/sampleTest/TestLevelTwo.java b/src/test/java/sampleTest/TestLevelTwo.java
+--- a/src/test/java/sampleTest/TestLevelTwo.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/test/java/sampleTest/TestLevelTwo.java	(date 1718190238456)
+@@ -9,33 +9,50 @@
+     @BeforeMethod
+     public void setup() {
+ 
+-        loginE6data();
++        launchE6data();
+ 
+     }
+ 
+     @AfterMethod
+     public void tearDown() {
++
+         closeDriver();
++
+     }
+ 
+     @Test(priority = 1)
+-    public void workspaceTest() {
++    public void loginTest() {
+ 
+-        Modules.Workspace().verifyWorkspaceSettings();
++        Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
+ 
+     }
+ 
+     @Test(priority = 2)
+-    public void catalogTest() {
++    public void workspaceTest() {
+ 
+-        Modules.Catalog().verifyCatalogSettings();
+-
++        Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
++        Modules.Workspace().clickWorkspaceSettings();
++        Modules.Workspace().verifyWorkspaceNameDisableInSettings();
+     }
+ 
+     @Test(priority = 3)
++    public void catalogTest() {
++
++        Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
++        Modules.Workspace().selectWorkspace("plt-beta");
++        Modules.Catalog().navigateToCatalogList();
++        Modules.Catalog().clickCatalogSettings();
++        Modules.Catalog().verifyCatalogNameDisableInSettings();
++    }
++
++    @Test(priority = 4)
+     public void clusterTest() {
+ 
+-        Modules.Cluster().verifyClusterSettings();
++        Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
++        Modules.Workspace().selectWorkspace("plt-beta");
++        Modules.Cluster().navigateToClusterList();
++        Modules.Cluster().clickClusterSettings();
++        Modules.Cluster().verifyClusterNameDisableInSettings();
+ 
+     }
+ 
+Index: src/main/java/Base/BaseLevel1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Base;\n\nimport org.openqa.selenium.By;\nimport org.openqa.selenium.WebDriver;\nimport org.openqa.selenium.WebElement;\nimport org.openqa.selenium.chrome.ChromeDriver;\nimport org.openqa.selenium.support.ui.ExpectedConditions;\nimport org.openqa.selenium.support.ui.WebDriverWait;\n\nimport java.time.Duration;\n\npublic class BaseLevel1 {\n\n    public static WebDriver driver = null;\n\n\n    public void loginE6data() {\n\n        WebDriver driver = new ChromeDriver();\n        driver.manage().window().maximize();\n        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));\n\n        // Login to e6data\n        driver.get(\"https://plt-beta.itachi.ai/login\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//*[@placeholder='Email']\"))).sendKeys(\"keerthiga.murugan@e6x.io\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//*[@placeholder='Password']\"))).sendKeys(\"Tinku123*\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//button[text()='Sign in']\"))).click();\n\n    }\n\n    public void waitToClick(WebDriver driver, int time, WebElement element) {\n\n        new WebDriverWait(driver, Duration.ofSeconds(time)).until(ExpectedConditions.elementToBeClickable(element));\n\n    }\n\n    public void closeDriver() {\n\n        driver.quit();\n\n    }\n}\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Base/BaseLevel1.java b/src/main/java/Base/BaseLevel1.java
+--- a/src/main/java/Base/BaseLevel1.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Base/BaseLevel1.java	(date 1718190238452)
+@@ -1,6 +1,5 @@
+ package Base;
+ 
+-import org.openqa.selenium.By;
+ import org.openqa.selenium.WebDriver;
+ import org.openqa.selenium.WebElement;
+ import org.openqa.selenium.chrome.ChromeDriver;
+@@ -13,18 +12,13 @@
+ 
+     public static WebDriver driver = null;
+ 
++    public void launchE6data() {
+ 
+-    public void loginE6data() {
+-
+-        WebDriver driver = new ChromeDriver();
++        driver = new ChromeDriver();
+         driver.manage().window().maximize();
+-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+ 
+-        // Login to e6data
++        // Launch e6data url
+         driver.get("https://plt-beta.itachi.ai/login");
+-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@placeholder='Email']"))).sendKeys("keerthiga.murugan@e6x.io");
+-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@placeholder='Password']"))).sendKeys("Tinku123*");
+-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Sign in']"))).click();
+ 
+     }
+ 
+Index: src/main/java/Pages/Level2/Cluster.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level2/Cluster.java b/src/main/java/Pages/Level2/Cluster.java
+--- a/src/main/java/Pages/Level2/Cluster.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level2/Cluster.java	(date 1718188252765)
+@@ -1,0 +1,64 @@
++package Pages.Level2;
++
++import Base.BaseLevel1;
++import Base.BaseLevel2;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.support.FindBy;
++import org.openqa.selenium.support.PageFactory;
++
++public class Cluster extends BaseLevel2 {
++
++    @FindBy(xpath = "//a[text()='plt-beta']")
++    WebElement lnkworkspace;
++
++    @FindBy(id = "Connectivity")
++    WebElement btnConnectivity;
++
++    @FindBy(xpath="//span[@class='name-label ' and text()='Clusters']")
++    WebElement btnCluster;
++
++    @FindBy(id = "settings")
++    WebElement btnSettings;
++
++    @FindBy(id = "cluster_name")
++    WebElement chkClusterName;
++
++    public Cluster(){
++
++        PageFactory.initElements(driver, this);
++
++    }
++
++    public void navigateToClusterList(){
++
++        waitToClick(driver, 10, btnConnectivity);
++        btnConnectivity.click();
++
++        waitToClick(driver, 10, btnCluster);
++        btnCluster.click();
++
++    }
++
++    public void clickClusterSettings(){
++
++        waitToClick(driver, 10, btnSettings);
++        btnSettings.click();
++
++    }
++
++    public void verifyClusterNameDisableInSettings() {
++
++        if (chkClusterName.isEnabled()){
++
++            throw new RuntimeException("User is allowed to hide cluster name in catalog table");
++
++        } else  {
++
++            System.out.println("Cluster name is disabled in settings");
++
++        }
++
++    }
++
++
++}
+Index: src/main/java/Pages/Level1/Catalog.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Pages.Level1;\n\nimport org.openqa.selenium.WebElement;\nimport org.openqa.selenium.support.FindBy;\nimport org.openqa.selenium.support.PageFactory;\nimport Base.BaseLevel1;\n\npublic class Catalog extends BaseLevel1 {\n\n    @FindBy(xpath = \"//a[text()='plt-beta']\")\n    WebElement lnkworkspace;\n\n    @FindBy(id = \"Connectivity\")\n    WebElement btnConnectivity;\n\n    @FindBy(id = \"OpenBook\")\n    WebElement btnCatalog;\n\n    @FindBy(id = \"settings\")\n    WebElement btnSettings;\n\n    @FindBy(id = \"name\")\n    WebElement chkCatalogName;\n\n    public Catalog() {\n\n        PageFactory.initElements(driver, this);\n\n    }\n\n\n    public void verifyCatalogSettings() {\n\n        waitToClick(driver, 10, lnkworkspace);\n        lnkworkspace.click();\n\n        waitToClick(driver, 10, btnConnectivity);\n        btnConnectivity.click();\n\n        waitToClick(driver, 10, btnCatalog);\n        btnCatalog.click();\n\n        waitToClick(driver, 10, btnSettings);\n        btnSettings.click();\n\n        if (chkCatalogName.isEnabled()) {\n\n            throw new RuntimeException(\"User is allowed to hide catalog name in catalog table\");\n\n        } else {\n\n            System.out.println(\"catalog name is disabled in settings\");\n\n        }\n\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level1/Catalog.java b/src/main/java/Pages/Level1/Catalog.java
+--- a/src/main/java/Pages/Level1/Catalog.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level1/Catalog.java	(date 1718186802702)
+@@ -28,11 +28,7 @@
+ 
+     }
+ 
+-
+-    public void verifyCatalogSettings() {
+-
+-        waitToClick(driver, 10, lnkworkspace);
+-        lnkworkspace.click();
++    public void navigateToCatalogList(){
+ 
+         waitToClick(driver, 10, btnConnectivity);
+         btnConnectivity.click();
+@@ -40,9 +36,17 @@
+         waitToClick(driver, 10, btnCatalog);
+         btnCatalog.click();
+ 
++    }
++
++    public void clickCatalogSettings(){
++
+         waitToClick(driver, 10, btnSettings);
+         btnSettings.click();
+ 
++    }
++
++    public void verifyCatalogNameDisableInSettings() {
++
+         if (chkCatalogName.isEnabled()) {
+ 
+             throw new RuntimeException("User is allowed to hide catalog name in catalog table");
+Index: src/main/java/Base/BaseLevel2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Base;\n\nimport org.openqa.selenium.By;\nimport org.openqa.selenium.WebDriver;\nimport org.openqa.selenium.WebElement;\nimport org.openqa.selenium.chrome.ChromeDriver;\nimport org.openqa.selenium.support.ui.ExpectedConditions;\nimport org.openqa.selenium.support.ui.WebDriverWait;\n\nimport java.time.Duration;\n\npublic class BaseLevel2 {\n\n    public static WebDriver driver = null;\n\n\n    public void loginE6data() {\n\n        WebDriver driver = new ChromeDriver();\n        driver.manage().window().maximize();\n        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));\n\n        // Login to e6data\n        driver.get(\"https://plt-beta.itachi.ai/login\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//*[@placeholder='Email']\"))).sendKeys(\"keerthiga.murugan@e6x.io\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//*[@placeholder='Password']\"))).sendKeys(\"Tinku123*\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//button[text()='Sign in']\"))).click();\n\n    }\n\n    public void waitToClick(WebDriver driver, int time, WebElement element) {\n\n        new WebDriverWait(driver, Duration.ofSeconds(time)).until(ExpectedConditions.elementToBeClickable(element));\n\n    }\n\n    public void closeDriver() {\n\n        driver.quit();\n\n    }\n}\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Base/BaseLevel2.java b/src/main/java/Base/BaseLevel2.java
+--- a/src/main/java/Base/BaseLevel2.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Base/BaseLevel2.java	(date 1718190784206)
+@@ -14,17 +14,13 @@
+     public static WebDriver driver = null;
+ 
+ 
+-    public void loginE6data() {
++    public void launchE6data() {
+ 
+-        WebDriver driver = new ChromeDriver();
++        driver = new ChromeDriver();
+         driver.manage().window().maximize();
+-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+ 
+-        // Login to e6data
++        // Launch e6data url
+         driver.get("https://plt-beta.itachi.ai/login");
+-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@placeholder='Email']"))).sendKeys("keerthiga.murugan@e6x.io");
+-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@placeholder='Password']"))).sendKeys("Tinku123*");
+-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Sign in']"))).click();
+ 
+     }
+ 
+Index: src/test/java/sampleTest/TestLevelThree.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/sampleTest/TestLevelThree.java b/src/test/java/sampleTest/TestLevelThree.java
+--- a/src/test/java/sampleTest/TestLevelThree.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/test/java/sampleTest/TestLevelThree.java	(date 1718195930767)
+@@ -1,0 +1,61 @@
++package sampleTest;
++
++import Base.BaseLevel3;
++import Pages.Level3.Modules;
++import org.testng.annotations.AfterMethod;
++import org.testng.annotations.BeforeMethod;
++import org.testng.annotations.Test;
++
++public class TestLevelThree extends BaseLevel3 {
++
++    @BeforeMethod
++    public void setup() {
++
++        launchE6data();
++
++    }
++
++    @AfterMethod
++    public void tearDown() {
++
++        closeDriver();
++
++    }
++
++    @Test(priority = 1)
++    public void loginTest() {
++
++        Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
++
++    }
++
++    @Test(priority = 2)
++    public void workspaceTest() {
++
++        Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
++        Modules.Workspace().clickWorkspaceSettings();
++        Modules.Workspace().verifyWorkspaceNameDisableInSettings();
++    }
++
++    @Test(priority = 3)
++    public void catalogTest() {
++
++        Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
++        Modules.Workspace().selectWorkspace("plt-beta");
++        Modules.Catalog().navigateToCatalogList();
++        Modules.Catalog().clickCatalogSettings();
++        Modules.Catalog().verifyCatalogNameDisableInSettings();
++    }
++
++    @Test(priority = 4)
++    public void clusterTest() {
++
++        Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
++        Modules.Workspace().selectWorkspace("plt-beta");
++        Modules.Cluster().navigateToClusterList();
++        Modules.Cluster().clickClusterSettings();
++        Modules.Cluster().verifyClusterNameDisableInSettings();
++
++    }
++
++}
+Index: src/main/java/Pages/Core/Selenium.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Pages.Level3;\n\nimport org.openqa.selenium.WebDriver;\n\npublic class Selenium implements ITool{\n\n    WebDriver driver;\n\n    public Selenium(WebDriver driver){\n\n        driver = this.driver;\n\n    }\n\n\n    @Override\n    public void loginToE6data(String username, String password) {\n\n    }\n\n    @Override\n    public void selectWorkspace(String workspace) {\n\n    }\n\n    @Override\n    public void clickWorkspaceSettings() {\n\n    }\n\n    @Override\n    public void verifyWorkspaceNameDisableInSettings() {\n\n    }\n\n    @Override\n    public void navigateToCatalogList() {\n\n    }\n\n    @Override\n    public void clickCatalogSettings() {\n\n    }\n\n    @Override\n    public void verifyCatalogNameDisableInSettings() {\n\n    }\n\n    @Override\n    public void navigateToClusterList() {\n\n    }\n\n    @Override\n    public void clickClusterSettings() {\n\n    }\n\n    @Override\n    public void verifyClusterNameDisableInSettings() {\n\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Core/Selenium.java b/src/main/java/Pages/Core/Selenium.java
+--- a/src/main/java/Pages/Core/Selenium.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Core/Selenium.java	(date 1718195562724)
+@@ -1,65 +1,132 @@
+-package Pages.Level3;
++package Pages.Core;
+ 
++import Base.BaseLevel3;
++import org.openqa.selenium.By;
+ import org.openqa.selenium.WebDriver;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.support.ui.ExpectedConditions;
++import org.openqa.selenium.support.ui.WebDriverWait;
+ 
+-public class Selenium implements ITool{
++import java.time.Duration;
++
++public class Selenium extends BaseLevel3 implements ITool{
+ 
+     WebDriver driver;
+ 
+     public Selenium(WebDriver driver){
+ 
+-        driver = this.driver;
++        this.driver = driver;
+ 
+     }
+ 
+ 
+     @Override
+-    public void loginToE6data(String username, String password) {
++    public void loginToE6data(WebElement txtuserName, WebElement txtPassword, WebElement btnSignIn,String username, String password) {
++
++        waitToClick(driver, 10, txtuserName);
++        txtuserName.sendKeys(username);
++
++        waitToClick(driver, 10, txtPassword);
++        txtPassword.sendKeys(password);
++
++        waitToClick(driver, 10, btnSignIn);
++        btnSignIn.click();
+ 
+     }
+ 
+     @Override
+     public void selectWorkspace(String workspace) {
+ 
++        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='" + workspace + "']"))).click();
++
++    }
++
++
++    public void clickWorkspaceSettings(WebElement btnSettings) {
++
++        waitToClick(driver, 10, btnSettings);
++        btnSettings.click();
++
+     }
+ 
+     @Override
+-    public void clickWorkspaceSettings() {
++    public void verifyWorkspaceNameDisableInSettings(WebElement chkWorkspaceName) {
++
++        if (chkWorkspaceName.isEnabled()) {
++
++            throw new RuntimeException("User is allowed to hide workspace name in workspace table");
++
++        } else {
+ 
++            System.out.println("Workspace name is disabled in settings");
++
++        }
+     }
+ 
+     @Override
+-    public void verifyWorkspaceNameDisableInSettings() {
++    public void navigateToCatalogList(WebElement btnConnectivity,WebElement btnCatalog) {
++
++        waitToClick(driver, 10, btnConnectivity);
++        btnConnectivity.click();
++
++        waitToClick(driver, 10, btnCatalog);
++        btnCatalog.click();
+ 
+     }
+ 
+     @Override
+-    public void navigateToCatalogList() {
++    public void clickCatalogSettings(WebElement btnSettings) {
++
++        waitToClick(driver, 10, btnSettings);
++        btnSettings.click();
+ 
+     }
+ 
+     @Override
+-    public void clickCatalogSettings() {
++    public void verifyCatalogNameDisableInSettings(WebElement chkCatalogName) {
++
++        if (chkCatalogName.isEnabled()) {
++
++            throw new RuntimeException("User is allowed to hide catalog name in catalog table");
++
++        } else {
++
++            System.out.println("catalog name is disabled in settings");
++
++        }
+ 
+     }
+ 
+     @Override
+-    public void verifyCatalogNameDisableInSettings() {
++    public void navigateToClusterList(WebElement btnConnectivity, WebElement btnCluster) {
++
++        waitToClick(driver, 10, btnConnectivity);
++        btnConnectivity.click();
++
++        waitToClick(driver, 10, btnCluster);
++        btnCluster.click();
+ 
+     }
+ 
+     @Override
+-    public void navigateToClusterList() {
++    public void clickClusterSettings(WebElement btnSettings) {
++
++        waitToClick(driver, 10, btnSettings);
++        btnSettings.click();
+ 
+     }
+ 
+     @Override
+-    public void clickClusterSettings() {
++    public void verifyClusterNameDisableInSettings(WebElement chkClusterName) {
+ 
+-    }
++        if (chkClusterName.isEnabled()){
++
++            throw new RuntimeException("User is allowed to hide cluster name in catalog table");
++
++        } else  {
+ 
+-    @Override
+-    public void verifyClusterNameDisableInSettings() {
++            System.out.println("Cluster name is disabled in settings");
+ 
++        }
+     }
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"1082db0d-3487-4a2a-905e-cadeece57d94\" name=\"Changes\" comment=\"\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"HighlightingSettingsPerFile\">\n    <setting file=\"file://$PROJECT_DIR$/src/test/java/sampleTest/TestLevelOne.java\" root0=\"FORCE_HIGHLIGHTING\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 4\n}</component>\n  <component name=\"ProjectId\" id=\"2hh9A9qgAind9h1hRZ3ORTlX9cp\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n    <ConfirmationsSetting value=\"2\" id=\"Remove\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"ASKED_ADD_EXTERNAL_FILES\": \"true\",\n    \"Maven.sampleFrameworks [clean].executor\": \"Run\",\n    \"Maven.sampleFrameworks [compile].executor\": \"Run\",\n    \"Maven.sampleFrameworks [test].executor\": \"Run\",\n    \"Maven.sampleFrameworks [validate].executor\": \"Run\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"TestNG./home/keerthiga/Documents/Automation/sampleFrameworks/testng.xml.executor\": \"Run\",\n    \"TestNG.TestLevelOne.catalogTest.executor\": \"Run\",\n    \"TestNG.TestLevelOne.clusterTest.executor\": \"Run\",\n    \"TestNG.TestLevelOne.executor\": \"Run\",\n    \"TestNG.TestLevelTwo.executor\": \"Run\",\n    \"TestNG.TestLevelZero.catalogTest.executor\": \"Run\",\n    \"TestNG.TestLevelZero.executor\": \"Run\",\n    \"TestNG.TestLevelZero.workspaceTest.executor\": \"Run\",\n    \"git-widget-placeholder\": \"master\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"last_opened_file_path\": \"/home/keerthiga/Documents/Automation/sampleFrameworks/src/main/java/Pages/Level2\",\n    \"onboarding.tips.debug.path\": \"/home/keerthiga/Documents/Automation/sampleFrameworks/src/main/java/org/example/Main.java\",\n    \"settings.editor.selected.configurable\": \"preferences.pluginManager\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/main/java/Pages/Level2\" />\n      <recent name=\"$PROJECT_DIR$/src/main/java/Pages/Level1\" />\n    </key>\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\n      <recent name=\"Base\" />\n      <recent name=\"Pages.Level1\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"TestNG.TestLevelTwo\">\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\n      <option name=\"filePath\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"TestLevelOne\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"sampleFrameworks\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sampleTest.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"sampleTest\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"sampleTest.TestLevelOne\" />\n      <option name=\"TEST_OBJECT\" value=\"CLASS\" />\n      <properties />\n      <listeners />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"TestLevelOne.clusterTest\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"sampleFrameworks\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sampleTest.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"sampleTest\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"sampleTest.TestLevelOne\" />\n      <option name=\"METHOD_NAME\" value=\"clusterTest\" />\n      <option name=\"TEST_OBJECT\" value=\"METHOD\" />\n      <properties />\n      <listeners />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"TestLevelTwo\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"sampleFrameworks\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sampleTest.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"sampleTest\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"sampleTest.TestLevelTwo\" />\n      <option name=\"TEST_OBJECT\" value=\"CLASS\" />\n      <properties />\n      <listeners />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"TestLevelZero\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"sampleFrameworks\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sampleTest.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"sampleTest\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"sampleTest.TestLevelZero\" />\n      <option name=\"TEST_OBJECT\" value=\"CLASS\" />\n      <properties />\n      <listeners />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"TestLevelZero.catalogTest\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"sampleFrameworks\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sampleTest.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"sampleTest\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"sampleTest.TestLevelZero\" />\n      <option name=\"METHOD_NAME\" value=\"catalogTest\" />\n      <option name=\"TEST_OBJECT\" value=\"METHOD\" />\n      <properties />\n      <listeners />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"TestNG.TestLevelTwo\" />\n        <item itemvalue=\"TestNG.TestLevelOne\" />\n        <item itemvalue=\"TestNG.TestLevelZero\" />\n        <item itemvalue=\"TestNG.TestLevelZero.catalogTest\" />\n        <item itemvalue=\"TestNG.TestLevelOne.clusterTest\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"1082db0d-3487-4a2a-905e-cadeece57d94\" name=\"Changes\" comment=\"\" />\n      <created>1718035298036</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1718035298036</updated>\n    </task>\n    <servers />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/src/main/java/Pages/Main.java</url>\n          <line>13</line>\n          <option name=\"timeStamp\" value=\"1\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/.idea/workspace.xml	(date 1718195396215)
+@@ -13,11 +13,17 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
++        <option value="Interface" />
+         <option value="Class" />
+       </list>
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="PREVIOUS_COMMIT_AUTHORS">
++      <list>
++        <option value="keerthiga &lt;keerthisri3885@gmail.com&gt;" />
++      </list>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="HighlightingSettingsPerFile">
+@@ -48,28 +54,40 @@
+     "TestNG.TestLevelOne.catalogTest.executor": "Run",
+     "TestNG.TestLevelOne.clusterTest.executor": "Run",
+     "TestNG.TestLevelOne.executor": "Run",
++    "TestNG.TestLevelOne.loginTest.executor": "Run",
++    "TestNG.TestLevelOne.workspaceTest.executor": "Run",
++    "TestNG.TestLevelThree.executor": "Run",
+     "TestNG.TestLevelTwo.executor": "Run",
+     "TestNG.TestLevelZero.catalogTest.executor": "Run",
+     "TestNG.TestLevelZero.executor": "Run",
+     "TestNG.TestLevelZero.workspaceTest.executor": "Run",
+     "git-widget-placeholder": "master",
+     "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "/home/keerthiga/Documents/Automation/sampleFrameworks/src/main/java/Pages/Level2",
++    "last_opened_file_path": "/home/keerthiga/Documents/Automation/sampleFrameworks/src/main/java/Pages/Level3",
+     "onboarding.tips.debug.path": "/home/keerthiga/Documents/Automation/sampleFrameworks/src/main/java/org/example/Main.java",
+     "settings.editor.selected.configurable": "preferences.pluginManager"
++  },
++  "keyToStringList": {
++    "GitStage.ChangesTree.GroupingKeys": [
++      "directory",
++      "module",
++      "repository"
++    ]
+   }
+ }]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/src/main/java/Pages/Level3" />
+       <recent name="$PROJECT_DIR$/src/main/java/Pages/Level2" />
+       <recent name="$PROJECT_DIR$/src/main/java/Pages/Level1" />
+     </key>
+     <key name="CopyClassDialog.RECENTS_KEY">
++      <recent name="Pages.Level2" />
+       <recent name="Base" />
+       <recent name="Pages.Level1" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="TestNG.TestLevelTwo">
++  <component name="RunManager" selected="TestNG.TestLevelThree">
+     <configuration default="true" type="JetRunConfigurationType">
+       <method v="2">
+         <option name="Make" enabled="true" />
+@@ -98,7 +116,7 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="TestLevelOne.clusterTest" type="TestNG" temporary="true" nameIsGenerated="true">
++    <configuration name="TestLevelOne.loginTest" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="sampleFrameworks" />
+       <extension name="coverage">
+         <pattern>
+@@ -108,7 +126,7 @@
+       </extension>
+       <option name="PACKAGE_NAME" value="sampleTest" />
+       <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelOne" />
+-      <option name="METHOD_NAME" value="clusterTest" />
++      <option name="METHOD_NAME" value="loginTest" />
+       <option name="TEST_OBJECT" value="METHOD" />
+       <properties />
+       <listeners />
+@@ -116,7 +134,7 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="TestLevelTwo" type="TestNG" temporary="true" nameIsGenerated="true">
++    <configuration name="TestLevelThree" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="sampleFrameworks" />
+       <extension name="coverage">
+         <pattern>
+@@ -125,7 +143,7 @@
+         </pattern>
+       </extension>
+       <option name="PACKAGE_NAME" value="sampleTest" />
+-      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelTwo" />
++      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelThree" />
+       <option name="TEST_OBJECT" value="CLASS" />
+       <properties />
+       <listeners />
+@@ -133,7 +151,7 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="TestLevelZero" type="TestNG" temporary="true" nameIsGenerated="true">
++    <configuration name="TestLevelTwo" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="sampleFrameworks" />
+       <extension name="coverage">
+         <pattern>
+@@ -142,7 +160,7 @@
+         </pattern>
+       </extension>
+       <option name="PACKAGE_NAME" value="sampleTest" />
+-      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelZero" />
++      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelTwo" />
+       <option name="TEST_OBJECT" value="CLASS" />
+       <properties />
+       <listeners />
+@@ -150,7 +168,7 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="TestLevelZero.catalogTest" type="TestNG" temporary="true" nameIsGenerated="true">
++    <configuration name="TestLevelZero" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="sampleFrameworks" />
+       <extension name="coverage">
+         <pattern>
+@@ -160,8 +178,7 @@
+       </extension>
+       <option name="PACKAGE_NAME" value="sampleTest" />
+       <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelZero" />
+-      <option name="METHOD_NAME" value="catalogTest" />
+-      <option name="TEST_OBJECT" value="METHOD" />
++      <option name="TEST_OBJECT" value="CLASS" />
+       <properties />
+       <listeners />
+       <method v="2">
+@@ -170,11 +187,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="TestNG.TestLevelThree" />
+         <item itemvalue="TestNG.TestLevelTwo" />
+         <item itemvalue="TestNG.TestLevelOne" />
++        <item itemvalue="TestNG.TestLevelOne.loginTest" />
+         <item itemvalue="TestNG.TestLevelZero" />
+-        <item itemvalue="TestNG.TestLevelZero.catalogTest" />
+-        <item itemvalue="TestNG.TestLevelOne.clusterTest" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -187,10 +204,37 @@
+       <option name="presentableId" value="Default" />
+       <updated>1718035298036</updated>
+     </task>
++    <task id="LOCAL-00001" summary="level zero to level two frameworks">
++      <option name="closed" value="true" />
++      <created>1718100187487</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1718100187487</updated>
++    </task>
++    <task id="LOCAL-00002" summary="level zero to level two frameworks">
++      <option name="closed" value="true" />
++      <created>1718100197680</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1718100197680</updated>
++    </task>
++    <task id="LOCAL-00003" summary="level zero to level two frameworks">
++      <option name="closed" value="true" />
++      <created>1718100388505</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1718100388505</updated>
++    </task>
++    <option name="localTasksCounter" value="4" />
+     <servers />
+   </component>
+   <component name="VcsManagerConfiguration">
+     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
++    <MESSAGE value="level zero to level two frameworks" />
++    <option name="LAST_COMMIT_MESSAGE" value="level zero to level two frameworks" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: src/main/java/Pages/Level3/Catalog.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level3/Catalog.java b/src/main/java/Pages/Level3/Catalog.java
+--- a/src/main/java/Pages/Level3/Catalog.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level3/Catalog.java	(date 1718195396135)
+@@ -1,0 +1,48 @@
++package Pages.Level3;
++
++import Base.BaseLevel3;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.support.FindBy;
++import org.openqa.selenium.support.PageFactory;
++
++public class Catalog extends BaseLevel3 {
++
++    @FindBy(xpath = "//a[text()='plt-beta']")
++    WebElement lnkworkspace;
++
++    @FindBy(id = "Connectivity")
++    WebElement btnConnectivity;
++
++    @FindBy(id = "OpenBook")
++    WebElement btnCatalog;
++
++    @FindBy(id = "settings")
++    WebElement btnSettings;
++
++    @FindBy(id = "name")
++    WebElement chkCatalogName;
++
++    public Catalog() {
++
++        PageFactory.initElements(driver, this);
++
++    }
++
++    public void navigateToCatalogList(){
++
++        wrapper.navigateToCatalogList(btnConnectivity,btnCatalog);
++    }
++
++    public void clickCatalogSettings(){
++
++      wrapper.clickCatalogSettings(btnSettings);
++
++    }
++
++    public void verifyCatalogNameDisableInSettings() {
++
++       wrapper.verifyCatalogNameDisableInSettings(chkCatalogName);
++
++    }
++
++}
+Index: src/main/java/Pages/Level3/Modules.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level3/Modules.java b/src/main/java/Pages/Level3/Modules.java
+--- a/src/main/java/Pages/Level3/Modules.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level3/Modules.java	(date 1718192107116)
+@@ -1,0 +1,32 @@
++package Pages.Level3;
++
++import Base.BaseLevel3;
++import org.openqa.selenium.support.PageFactory;
++
++public class Modules extends BaseLevel3 {
++
++    public static Login Login() {
++
++        return PageFactory.initElements(driver, Login.class);
++
++    }
++
++    public static Workspace Workspace() {
++
++        return PageFactory.initElements(driver, Workspace.class);
++
++    }
++
++    public static Catalog Catalog() {
++
++        return PageFactory.initElements(driver, Catalog.class);
++
++    }
++
++    public static Cluster Cluster() {
++
++        return PageFactory.initElements(driver, Cluster.class);
++
++    }
++
++}
+Index: src/main/java/Pages/Level3/Login.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Level3/Login.java b/src/main/java/Pages/Level3/Login.java
+--- a/src/main/java/Pages/Level3/Login.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Level3/Login.java	(date 1718195396143)
+@@ -1,0 +1,36 @@
++package Pages.Level3;
++
++import Base.BaseLevel3;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.support.FindBy;
++import org.openqa.selenium.support.PageFactory;
++import org.openqa.selenium.support.ui.ExpectedConditions;
++import org.openqa.selenium.support.ui.WebDriverWait;
++
++import java.time.Duration;
++
++public class Login extends BaseLevel3 {
++
++    @FindBy(xpath = "//*[@placeholder='Email']")
++    WebElement txtuserName;
++
++    @FindBy(xpath = "//*[@placeholder='Password']")
++    WebElement txtpassword;
++
++    @FindBy(xpath = "//button[text()='Sign in']")
++    WebElement btnSignIn;
++
++    public Login() {
++
++        PageFactory.initElements(driver, this);
++
++    }
++
++    public void loginToE6data( String username, String password) {
++
++        wrapper.loginToE6data(txtuserName, txtpassword, btnSignIn, username, password);
++
++    }
++
++
++}
+Index: src/main/java/Pages/Core/ITool.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Pages.Level3;\n\npublic interface ITool {\n\n    public void loginToE6data(String username, String password);\n\n    public void selectWorkspace(String workspace);\n    public void clickWorkspaceSettings();\n    public void verifyWorkspaceNameDisableInSettings();\n\n    public void navigateToCatalogList();\n    public void clickCatalogSettings();\n    public void verifyCatalogNameDisableInSettings();\n\n    public void navigateToClusterList();\n    public void clickClusterSettings();\n    public void verifyClusterNameDisableInSettings();\n\n\n\n\n\n\n\n\n\n    }\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Pages/Core/ITool.java b/src/main/java/Pages/Core/ITool.java
+--- a/src/main/java/Pages/Core/ITool.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/main/java/Pages/Core/ITool.java	(date 1718194899798)
+@@ -1,20 +1,22 @@
+-package Pages.Level3;
++package Pages.Core;
++
++import org.openqa.selenium.WebElement;
+ 
+ public interface ITool {
+ 
+-    public void loginToE6data(String username, String password);
++    public void loginToE6data(WebElement element1, WebElement element2, WebElement element3,String username, String password);
+ 
+     public void selectWorkspace(String workspace);
+-    public void clickWorkspaceSettings();
+-    public void verifyWorkspaceNameDisableInSettings();
++    public void clickWorkspaceSettings(WebElement element);
++    public void verifyWorkspaceNameDisableInSettings(WebElement element);
+ 
+-    public void navigateToCatalogList();
+-    public void clickCatalogSettings();
+-    public void verifyCatalogNameDisableInSettings();
++    public void navigateToCatalogList(WebElement element1,WebElement element2);
++    public void clickCatalogSettings(WebElement element);
++    public void verifyCatalogNameDisableInSettings(WebElement element);
+ 
+-    public void navigateToClusterList();
+-    public void clickClusterSettings();
+-    public void verifyClusterNameDisableInSettings();
++    public void navigateToClusterList(WebElement element1,WebElement element2);
++    public void clickClusterSettings(WebElement element);
++    public void verifyClusterNameDisableInSettings(WebElement element);
+ 
+ 
+ 
+Index: src/test/java/sampleTest/TestLevelZero.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sampleTest;\n\nimport org.openqa.selenium.By;\nimport org.openqa.selenium.WebDriver;\nimport org.openqa.selenium.chrome.ChromeDriver;\nimport org.openqa.selenium.support.ui.ExpectedConditions;\nimport org.openqa.selenium.support.ui.WebDriverWait;\nimport org.testng.annotations.Test;\n\nimport java.time.Duration;\n\npublic class TestLevelZero {\n\n    @Test(priority = 1)\n    public void workspaceTest() {\n\n        WebDriver driver = new ChromeDriver();\n        driver.manage().window().maximize();\n        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));\n\n        // Login to e6data\n        driver.get(\"https://plt-beta.itachi.ai/login\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//*[@placeholder='Email']\"))).sendKeys(\"keerthiga.murugan@e6x.io\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//*[@placeholder='Password']\"))).sendKeys(\"Tinku123*\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//button[text()='Sign in']\"))).click();\n\n        // Verify workspace settings\n        wait.until(ExpectedConditions.elementToBeClickable(By.id(\"settings\"))).click();\n        if (driver.findElement(By.id(\"workspace_name\")).isEnabled()) {\n\n            throw new RuntimeException(\"User is allowed to hide workspace name in workspace table\");\n\n        } else {\n\n            System.out.println(\"Workspace name is disabled in settings\");\n\n        }\n\n        driver.close();\n\n    }\n\n    @Test(priority = 2)\n    public void catalogTest() {\n\n        WebDriver driver = new ChromeDriver();\n        driver.manage().window().maximize();\n        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));\n\n        // Login to e6data\n        driver.get(\"https://plt-beta.itachi.ai/login\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//*[@placeholder='Email']\"))).sendKeys(\"keerthiga.murugan@e6x.io\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//*[@placeholder='Password']\"))).sendKeys(\"Tinku123*\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//button[text()='Sign in']\"))).click();\n\n        // Navigate to catalog listing screen\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//a[text()='plt-beta']\"))).click();\n        wait.until(ExpectedConditions.elementToBeClickable(By.id(\"Connectivity\"))).click();\n        wait.until(ExpectedConditions.elementToBeClickable(By.id(\"OpenBook\"))).click();\n\n        // Verify catalog settings\n        wait.until(ExpectedConditions.elementToBeClickable(By.id(\"settings\"))).click();\n\n        if (driver.findElement(By.id(\"name\")).isEnabled()) {\n\n            throw new RuntimeException(\"User is allowed to hide catalog name in catalog table\");\n\n        } else {\n\n            System.out.println(\"catalog name is disabled in settings\");\n\n        }\n\n        driver.close();\n\n    }\n\n    @Test(priority = 3)\n    public void clusterTest() {\n\n        WebDriver driver = new ChromeDriver();\n        driver.manage().window().maximize();\n        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));\n\n        // Login to e6data\n        driver.get(\"https://plt-beta.itachi.ai/login\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//*[@placeholder='Email']\"))).sendKeys(\"keerthiga.murugan@e6x.io\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//*[@placeholder='Password']\"))).sendKeys(\"Tinku123*\");\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//button[text()='Sign in']\"))).click();\n\n        // Navigate to cluster listing screen\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//a[text()='plt-beta']\"))).click();\n        wait.until(ExpectedConditions.elementToBeClickable(By.id(\"Connectivity\"))).click();\n        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(\"//span[@class='name-label ' and text()='Clusters']\"))).click();\n\n        // Verify cluster settings\n        wait.until(ExpectedConditions.elementToBeClickable(By.id(\"settings\"))).click();\n        if (driver.findElement(By.id(\"cluster_name\")).isEnabled()) {\n\n            throw new RuntimeException(\"User is allowed to hide cluster name in cluster table\");\n\n        } else {\n\n            System.out.println(\"Cluster name is disabled in settings\");\n\n        }\n\n        driver.close();\n\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/sampleTest/TestLevelZero.java b/src/test/java/sampleTest/TestLevelZero.java
+--- a/src/test/java/sampleTest/TestLevelZero.java	(revision 8def8669ba7ca0e18af73f5119b8fdd32be16960)
++++ b/src/test/java/sampleTest/TestLevelZero.java	(date 1718190238444)
+@@ -6,7 +6,6 @@
+ import org.openqa.selenium.support.ui.ExpectedConditions;
+ import org.openqa.selenium.support.ui.WebDriverWait;
+ import org.testng.annotations.Test;
+-
+ import java.time.Duration;
+ 
+ public class TestLevelZero {
