@@ -1,9 +1,14 @@
 package Pages.Level1;
 
 import Base.BaseLevel1;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class Cluster extends BaseLevel1 {
 
@@ -28,11 +33,7 @@ public class Cluster extends BaseLevel1 {
 
     }
 
-
-    public void verifyClusterSettings() {
-
-        waitToClick(driver, 10, lnkworkspace);
-        lnkworkspace.click();
+    public void navigateToClusterList(){
 
         waitToClick(driver, 10, btnConnectivity);
         btnConnectivity.click();
@@ -40,8 +41,16 @@ public class Cluster extends BaseLevel1 {
         waitToClick(driver, 10, btnCluster);
         btnCluster.click();
 
+    }
+
+    public void clickClusterSettings(){
+
         waitToClick(driver, 10, btnSettings);
         btnSettings.click();
+
+    }
+
+    public void verifyClusterNameDisableInSettings() {
 
         if (chkClusterName.isEnabled()){
 

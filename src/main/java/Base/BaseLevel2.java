@@ -14,17 +14,13 @@ public class BaseLevel2 {
     public static WebDriver driver = null;
 
 
-    public void loginE6data() {
+    public void launchE6data() {
 
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        // Login to e6data
+        // Launch e6data url
         driver.get("https://plt-beta.itachi.ai/login");
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@placeholder='Email']"))).sendKeys("keerthiga.murugan@e6x.io");
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@placeholder='Password']"))).sendKeys("Tinku123*");
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Sign in']"))).click();
 
     }
 

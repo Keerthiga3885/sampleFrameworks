@@ -28,11 +28,7 @@ public class Catalog extends BaseLevel1 {
 
     }
 
-
-    public void verifyCatalogSettings() {
-
-        waitToClick(driver, 10, lnkworkspace);
-        lnkworkspace.click();
+    public void navigateToCatalogList(){
 
         waitToClick(driver, 10, btnConnectivity);
         btnConnectivity.click();
@@ -40,8 +36,16 @@ public class Catalog extends BaseLevel1 {
         waitToClick(driver, 10, btnCatalog);
         btnCatalog.click();
 
+    }
+
+    public void clickCatalogSettings(){
+
         waitToClick(driver, 10, btnSettings);
         btnSettings.click();
+
+    }
+
+    public void verifyCatalogNameDisableInSettings() {
 
         if (chkCatalogName.isEnabled()) {
 

@@ -1,6 +1,5 @@
 package Base;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,18 +12,13 @@ public class BaseLevel1 {
 
     public static WebDriver driver = null;
 
+    public void launchE6data() {
 
-    public void loginE6data() {
-
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        // Login to e6data
+        // Launch e6data url
         driver.get("https://plt-beta.itachi.ai/login");
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@placeholder='Email']"))).sendKeys("keerthiga.murugan@e6x.io");
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@placeholder='Password']"))).sendKeys("Tinku123*");
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Sign in']"))).click();
 
     }
 

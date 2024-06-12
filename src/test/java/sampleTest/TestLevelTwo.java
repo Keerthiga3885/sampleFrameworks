@@ -9,33 +9,50 @@ public class TestLevelTwo extends BaseLevel2 {
     @BeforeMethod
     public void setup() {
 
-        loginE6data();
+        launchE6data();
 
     }
 
     @AfterMethod
     public void tearDown() {
+
         closeDriver();
+
     }
 
     @Test(priority = 1)
-    public void workspaceTest() {
+    public void loginTest() {
 
-        Modules.Workspace().verifyWorkspaceSettings();
+        Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
 
     }
 
     @Test(priority = 2)
-    public void catalogTest() {
+    public void workspaceTest() {
 
-        Modules.Catalog().verifyCatalogSettings();
-
+        Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
+        Modules.Workspace().clickWorkspaceSettings();
+        Modules.Workspace().verifyWorkspaceNameDisableInSettings();
     }
 
     @Test(priority = 3)
+    public void catalogTest() {
+
+        Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
+        Modules.Workspace().selectWorkspace("plt-beta");
+        Modules.Catalog().navigateToCatalogList();
+        Modules.Catalog().clickCatalogSettings();
+        Modules.Catalog().verifyCatalogNameDisableInSettings();
+    }
+
+    @Test(priority = 4)
     public void clusterTest() {
 
-        Modules.Cluster().verifyClusterSettings();
+        Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
+        Modules.Workspace().selectWorkspace("plt-beta");
+        Modules.Cluster().navigateToClusterList();
+        Modules.Cluster().clickClusterSettings();
+        Modules.Cluster().verifyClusterNameDisableInSettings();
 
     }
 

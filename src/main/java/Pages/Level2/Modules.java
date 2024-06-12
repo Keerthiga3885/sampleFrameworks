@@ -4,6 +4,12 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Modules extends Base.BaseLevel2 {
 
+    public static Login Login() {
+
+        return PageFactory.initElements(driver, Login.class);
+
+    }
+
     public static Workspace Workspace() {
 
         return PageFactory.initElements(driver, Workspace.class);
