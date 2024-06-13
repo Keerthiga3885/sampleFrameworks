@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class BaseLevel3 {
+public class BaseLevel4 {
 
     public static WebDriver driver = null;
     public static Wrapper wrapper = null;

@@ -41,45 +41,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Maven.sampleFrameworks [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.sampleFrameworks [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.sampleFrameworks [test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.sampleFrameworks [validate].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;TestNG./home/keerthiga/Documents/Automation/sampleFrameworks/testng.xml.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.TestLevelOne.catalogTest.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.TestLevelOne.clusterTest.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.TestLevelOne.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.TestLevelOne.loginTest.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.TestLevelOne.workspaceTest.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.TestLevelThree.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.TestLevelTwo.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.TestLevelZero.catalogTest.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.TestLevelZero.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.TestLevelZero.workspaceTest.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/keerthiga/Documents/Automation/sampleFrameworks/src/main/java/Pages/Level3&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/home/keerthiga/Documents/Automation/sampleFrameworks/src/main/java/org/example/Main.java&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Maven.sampleFrameworks [clean].executor": "Run",
+    "Maven.sampleFrameworks [compile].executor": "Run",
+    "Maven.sampleFrameworks [test].executor": "Run",
+    "Maven.sampleFrameworks [validate].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TestNG./home/keerthiga/Documents/Automation/sampleFrameworks/testng.xml.executor": "Run",
+    "TestNG.TestLevelFour.catalogTest.executor": "Run",
+    "TestNG.TestLevelFour.executor": "Run",
+    "TestNG.TestLevelFour.loginTest.executor": "Run",
+    "TestNG.TestLevelOne.catalogTest.executor": "Run",
+    "TestNG.TestLevelOne.clusterTest.executor": "Run",
+    "TestNG.TestLevelOne.executor": "Run",
+    "TestNG.TestLevelOne.loginTest.executor": "Run",
+    "TestNG.TestLevelOne.workspaceTest.executor": "Run",
+    "TestNG.TestLevelThree.executor": "Run",
+    "TestNG.TestLevelTwo.executor": "Run",
+    "TestNG.TestLevelZero.catalogTest.executor": "Run",
+    "TestNG.TestLevelZero.executor": "Run",
+    "TestNG.TestLevelZero.workspaceTest.executor": "Run",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/keerthiga/Documents/Automation/sampleFrameworks/src/main/java/Pages/Level4",
+    "onboarding.tips.debug.path": "/home/keerthiga/Documents/Automation/sampleFrameworks/src/main/java/org/example/Main.java",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;,
-      &quot;repository&quot;
+  "keyToStringList": {
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/Pages/Level4" />
       <recent name="$PROJECT_DIR$/src/main/java/Pages/Level3" />
       <recent name="$PROJECT_DIR$/src/main/java/Pages/Level2" />
       <recent name="$PROJECT_DIR$/src/main/java/Pages/Level1" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="Core" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Pages.Level2" />
@@ -87,7 +94,7 @@
       <recent name="Pages.Level1" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.TestLevelThree">
+  <component name="RunManager" selected="TestNG.TestLevelFour.clusterTest">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -99,7 +106,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestLevelOne" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="TestLevelFour" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="sampleFrameworks" />
       <extension name="coverage">
         <pattern>
@@ -108,7 +115,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="sampleTest" />
-      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelOne" />
+      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelFour" />
       <option name="TEST_OBJECT" value="CLASS" />
       <properties />
       <listeners />
@@ -116,7 +123,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestLevelOne.loginTest" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="TestLevelFour.catalogTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="sampleFrameworks" />
       <extension name="coverage">
         <pattern>
@@ -125,7 +132,43 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="sampleTest" />
-      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelOne" />
+      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelFour" />
+      <option name="METHOD_NAME" value="catalogTest" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestLevelFour.clusterTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="sampleFrameworks" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sampleTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sampleTest" />
+      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelFour" />
+      <option name="METHOD_NAME" value="clusterTest" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestLevelFour.loginTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="sampleFrameworks" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sampleTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sampleTest" />
+      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelFour" />
       <option name="METHOD_NAME" value="loginTest" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
@@ -151,47 +194,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestLevelTwo" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="sampleFrameworks" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sampleTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="sampleTest" />
-      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelTwo" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestLevelZero" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="sampleFrameworks" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sampleTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="sampleTest" />
-      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelZero" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.TestLevelFour.clusterTest" />
+        <item itemvalue="TestNG.TestLevelFour" />
+        <item itemvalue="TestNG.TestLevelFour.loginTest" />
+        <item itemvalue="TestNG.TestLevelFour.catalogTest" />
         <item itemvalue="TestNG.TestLevelThree" />
-        <item itemvalue="TestNG.TestLevelTwo" />
-        <item itemvalue="TestNG.TestLevelOne" />
-        <item itemvalue="TestNG.TestLevelOne.loginTest" />
-        <item itemvalue="TestNG.TestLevelZero" />
       </list>
     </recent_temporary>
   </component>
@@ -252,8 +261,27 @@
       <option name="project" value="LOCAL" />
       <updated>1718196421554</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Merge remote-tracking branch 'origin/master'">
+      <option name="closed" value="true" />
+      <created>1718202107955</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718202107955</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

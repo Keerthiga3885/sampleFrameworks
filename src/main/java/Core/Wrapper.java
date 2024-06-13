@@ -1,4 +1,4 @@
-package Pages.Core;
+package Core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,8 +33,8 @@ public class Wrapper implements ITool {
     }
 
     @Override
-    public void navigateToCatalogList(WebElement element1, WebElement element2) {
-        iTool.navigateToCatalogList(element1, element2);
+    public void clickCatalogOption(WebElement element1, WebElement element2) {
+        iTool.clickCatalogOption(element1, element2);
     }
 
     @Override
@@ -48,8 +48,8 @@ public class Wrapper implements ITool {
     }
 
     @Override
-    public void navigateToClusterList(WebElement element1, WebElement element2) {
-        iTool.navigateToClusterList(element1, element2);
+    public void clickClusterOption(WebElement element1, WebElement element2) {
+        iTool.clickClusterOption(element1, element2);
     }
 
     @Override

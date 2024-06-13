@@ -1,6 +1,7 @@
-package Pages.Core;
+package Core;
 
 import Base.BaseLevel3;
+import Base.BaseLevel4;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Selenium extends BaseLevel3 implements ITool{
+public class Selenium extends BaseLevel4 implements ITool{
 
     WebDriver driver;
 
@@ -64,7 +65,7 @@ public class Selenium extends BaseLevel3 implements ITool{
     }
 
     @Override
-    public void navigateToCatalogList(WebElement btnConnectivity,WebElement btnCatalog) {
+    public void clickCatalogOption(WebElement btnConnectivity,WebElement btnCatalog) {
 
         waitToClick(driver, 10, btnConnectivity);
         btnConnectivity.click();
@@ -98,7 +99,7 @@ public class Selenium extends BaseLevel3 implements ITool{
     }
 
     @Override
-    public void navigateToClusterList(WebElement btnConnectivity, WebElement btnCluster) {
+    public void clickClusterOption(WebElement btnConnectivity, WebElement btnCluster) {
 
         waitToClick(driver, 10, btnConnectivity);
         btnConnectivity.click();

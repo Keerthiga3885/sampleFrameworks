@@ -42,7 +42,7 @@ public class TestLevelThree extends BaseLevel3 {
 
         Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
         Modules.Workspace().selectWorkspace("plt-beta");
-        Modules.Catalog().navigateToCatalogList();
+        Modules.Catalog().clickCatalogOption();
         Modules.Catalog().clickCatalogSettings();
         Modules.Catalog().verifyCatalogNameDisableInSettings();
     }
@@ -52,7 +52,7 @@ public class TestLevelThree extends BaseLevel3 {
 
         Modules.Login().loginToE6data("keerthiga.murugan@e6x.io", "Tinku123*");
         Modules.Workspace().selectWorkspace("plt-beta");
-        Modules.Cluster().navigateToClusterList();
+        Modules.Cluster().clickClusterOption();
         Modules.Cluster().clickClusterSettings();
         Modules.Cluster().verifyClusterNameDisableInSettings();
 
