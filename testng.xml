@@ -5,8 +5,9 @@
         <classes>
             <class name="sampleTest.TestLevelFive">
                 <methods>
-                    <include name="workspaceTest"/>
-                    <include name="loginTest"/>
+<!--                    <include name="workspaceTest"/>-->
+<!--                    <include name="loginTest"/>-->
+                    <include name="catalogTest"/>
                 </methods>
             </class>
         </classes>

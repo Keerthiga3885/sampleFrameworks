@@ -2,6 +2,7 @@ package Pages.Level4;
 
 import Base.BaseLevel3;
 import Base.BaseLevel4;
+import Utils.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -23,7 +24,7 @@ public class Catalog extends BaseLevel4 {
 
     public Catalog() {
 
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(Driver.getDriver(), this);
 
     }
 

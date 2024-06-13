@@ -98,7 +98,7 @@
       <recent name="Pages.Level1" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.TestLevelZero">
+  <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -106,23 +106,6 @@
     </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestLevelFour" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="sampleFrameworks" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sampleTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="sampleTest" />
-      <option name="MAIN_CLASS_NAME" value="sampleTest.TestLevelFour" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -195,13 +178,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="/home/keerthiga/Documents/Automation/sampleFrameworks/testng.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="sampleFrameworks" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/testng.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG./home/keerthiga/Documents/Automation/sampleFrameworks/testng.xml" />
         <item itemvalue="TestNG.TestLevelZero" />
         <item itemvalue="TestNG.TestLevelOne" />
         <item itemvalue="TestNG.TestLevelTwo" />
         <item itemvalue="TestNG.TestLevelThree" />
-        <item itemvalue="TestNG.TestLevelFour" />
       </list>
     </recent_temporary>
   </component>
@@ -278,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718264034990</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="input via excel and driver factory update completed">
+      <option name="closed" value="true" />
+      <created>1718277320345</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1718277320345</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -298,7 +299,8 @@
     <MESSAGE value="Changed as per latest comment and implemented testLevel3" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
     <MESSAGE value="Workflow and thread safe approaches are implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Workflow and thread safe approaches are implemented" />
+    <MESSAGE value="input via excel and driver factory update completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="input via excel and driver factory update completed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

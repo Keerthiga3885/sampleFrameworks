@@ -19,17 +19,17 @@ public class TestLevelFour extends BaseLevel4 {
 
     }
 
-    @Test(priority = 1)
+    @Test()
     public void loginTest() {
 
         // Login to e6data
         launchE6data();
 
-        Modules.Login().loginToE6data(platformData.getLoginData().getUserName(),platformData.getLoginData().getPassword());
+        Modules.Login().loginToE6data(platformData.getLoginData().getUserName(), platformData.getLoginData().getPassword());
 
     }
 
-    @Test(priority = 2)
+    @Test()
     public void workspaceTest() {
 
         // Navigate to workspace list screen

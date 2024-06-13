@@ -9,17 +9,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class BaseLevel4 {
+public class BaseLevel4  {
 
-    public static WebDriver driver = null;
     public static Wrapper wrapper = null;
 
     // Launch the browser and e6data url
     public void launchE6data() {
 
-        driver = Driver.getDriver();
-        driver.manage().window().maximize();
-        wrapper = new Wrapper(driver);
+        Driver.getDriver().manage().window().maximize();
+        wrapper = new Wrapper(Driver.getDriver());
         wrapper.launchUrl("https://plt-beta.itachi.ai/login");
 
     }
