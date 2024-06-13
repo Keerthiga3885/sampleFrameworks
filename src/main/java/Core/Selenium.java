@@ -10,19 +10,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Selenium extends BaseLevel4 implements ITool{
+public class Selenium extends BaseLevel4 implements ITool {
 
     WebDriver driver;
 
-    public Selenium(WebDriver driver){
+    public Selenium(WebDriver driver) {
 
         this.driver = driver;
 
     }
 
+    @Override
+    public void launchUrl(String url) {
+        driver.get(url);
+    }
 
     @Override
-    public void loginToE6data(WebElement txtuserName, WebElement txtPassword, WebElement btnSignIn,String username, String password) {
+    public void loginToE6data(WebElement txtuserName, WebElement txtPassword, WebElement btnSignIn, String username, String password) {
 
         waitToClick(driver, 10, txtuserName);
         txtuserName.sendKeys(username);
@@ -65,7 +69,7 @@ public class Selenium extends BaseLevel4 implements ITool{
     }
 
     @Override
-    public void clickCatalogOption(WebElement btnConnectivity,WebElement btnCatalog) {
+    public void clickCatalogOption(WebElement btnConnectivity, WebElement btnCatalog) {
 
         waitToClick(driver, 10, btnConnectivity);
         btnConnectivity.click();
@@ -120,11 +124,11 @@ public class Selenium extends BaseLevel4 implements ITool{
     @Override
     public void verifyClusterNameDisableInSettings(WebElement chkClusterName) {
 
-        if (chkClusterName.isEnabled()){
+        if (chkClusterName.isEnabled()) {
 
             throw new RuntimeException("User is allowed to hide cluster name in catalog table");
 
-        } else  {
+        } else {
 
             System.out.println("Cluster name is disabled in settings");
 

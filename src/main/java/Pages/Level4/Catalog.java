@@ -8,8 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Catalog extends BaseLevel4 {
 
-    @FindBy(xpath = "//a[text()='plt-beta']")
-    WebElement lnkworkspace;
 
     @FindBy(id = "Connectivity")
     WebElement btnConnectivity;

@@ -2,16 +2,35 @@ package sampleTest;
 
 import Base.BaseLevel4;
 import Pages.Level4.Modules;
-import TestData.PlatformData;
+import Utils.Excel;
 import Workflows.Workflows;
+import org.apache.commons.io.FileUtils;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class TestLevelFour extends BaseLevel4 {
-    PlatformData platformData = new PlatformData();
+import java.io.File;
+import java.io.IOException;
+
+public class TestLevelFive extends BaseLevel4 {
 
 
-    @AfterMethod
+    @BeforeSuite
+    public void fileSetup() throws IOException {
+
+        // Clear old results
+        FileUtils.deleteDirectory(new File("test-output"));
+
+        // Create Test-Output directory to store results
+        FileUtils.forceMkdir(new File("test-output"));
+
+        // Copy test data file to write test results
+        FileUtils.copyFile(new File("src/main/resources/e6TestData.xlsx"), new File("test-output/e6TestOutput.xlsx"));
+
+    }
+
+
+   @AfterMethod
     public void tearDown() {
 
         // Close browser driver
@@ -19,13 +38,13 @@ public class TestLevelFour extends BaseLevel4 {
 
     }
 
-    @Test(priority = 1)
-    public void loginTest() {
+    @Test(dataProvider = "E6TestData", dataProviderClass = Excel.class,priority = 1)
+    public void loginTest(String userName, String password) {
 
         // Login to e6data
         launchE6data();
 
-        Modules.Login().loginToE6data(platformData.getLoginData().getUserName(),platformData.getLoginData().getPassword());
+        Modules.Login().loginToE6data(userName, password);
 
     }
 
@@ -42,11 +61,11 @@ public class TestLevelFour extends BaseLevel4 {
         Modules.Workspace().verifyWorkspaceNameDisableInSettings();
     }
 
-    @Test(priority = 3)
-    public void catalogTest() {
+    @Test(dataProvider = "E6TestData", dataProviderClass = Excel.class,priority = 3)
+    public void catalogTest(String workspaceName) {
 
         //Navigate to catalog list screen
-        Workflows.CatalogWF().NavigateToCatalogList();
+        Workflows.CatalogWF().NavigateToCatalogList1(workspaceName);
 
         // Click catalog settings button
         Modules.Catalog().clickCatalogSettings();
@@ -68,5 +87,6 @@ public class TestLevelFour extends BaseLevel4 {
         Modules.Cluster().verifyClusterNameDisableInSettings();
 
     }
+
 
 }

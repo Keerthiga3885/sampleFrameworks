@@ -1,9 +1,9 @@
 package Base;
 
 import Core.Wrapper;
+import Utils.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,17 +17,17 @@ public class BaseLevel4 {
     // Launch the browser and e6data url
     public void launchE6data() {
 
-        driver = new ChromeDriver();
+        driver = Driver.getDriver();
         driver.manage().window().maximize();
         wrapper = new Wrapper(driver);
-        driver.get("https://plt-beta.itachi.ai/login");
+        wrapper.launchUrl("https://plt-beta.itachi.ai/login");
 
     }
 
     // Close the browser
     public void closeDriver() {
 
-        driver.quit();
+        Driver.closeDriver();
 
     }
 

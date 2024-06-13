@@ -12,7 +12,7 @@ public class DriverFactory {
     public static WebDriver initiatliseDriver(String browserName){
 
         WebDriver driver;
-        switch(Enums.BROWSER_NAME.valueOf(browserName)){
+        switch(Enums.BROWSER_NAME.valueOf(browserName.toUpperCase())){
 
             case CHROME :
                 driver = new ChromeDriver();

@@ -12,6 +12,11 @@ public class Wrapper implements ITool {
     }
 
     @Override
+    public void launchUrl(String url) {
+        iTool.launchUrl(url);
+    }
+
+    @Override
     public void loginToE6data(WebElement element1, WebElement element2, WebElement element3, String username, String password) {
 
         iTool.loginToE6data(element1, element2, element3, username, password);
@@ -60,5 +65,10 @@ public class Wrapper implements ITool {
     @Override
     public void verifyClusterNameDisableInSettings(WebElement element) {
         iTool.verifyClusterNameDisableInSettings(element);
+    }
+
+    @Override
+    public void closeDriver() {
+        iTool.closeDriver();
     }
 }

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="All Test Suite" parallel="methods">
     <test verbose="2" preserve-order="true" name="/home/keerthiga/Documents/Automation/sampleFrameworks">
         <classes>
-            <class name="sampleTest.TestLevelOne">
+            <class name="sampleTest.TestLevelFive">
                 <methods>
                     <include name="workspaceTest"/>
-                    <include name="catalogTest"/>
-                    <include name="clusterTest"/>
+                    <include name="loginTest"/>
                 </methods>
             </class>
         </classes>
